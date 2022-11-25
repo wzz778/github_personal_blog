@@ -55,7 +55,154 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
+ 
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+
+ 
 <body>
+    
+        <div id="loading-container">
+             <p class="loading-text">嘘~  正在从服务器偷取页面 . . . </p> 
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div> 
+                 <div></div>
+             </div>
+        </div>
+    
+
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -394,13 +541,23 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/github_personal_blog/">1</a></span>
+    <span class="count"><a href="/github_personal_blog/">37</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
+<div class="statis">
+    <span class="count"><a href="/github_personal_blog/categories">5</a></span>
+    <span class="name">分类</span>
+</div>
 
+
+
+<div class="statis">
+    <span class="count"><a href="/github_personal_blog/tags">31</a></span>
+    <span class="name">标签</span>
+</div>
 
 
                     </div>
@@ -414,21 +571,31 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/github_personal_blog/">1</a></span>
+    <span class="count"><a href="/github_personal_blog/">37</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
+<div class="statis">
+    <span class="count"><a href="/github_personal_blog/categories">5</a></span>
+    <span class="name">分类</span>
+</div>
 
+
+
+<div class="statis">
+    <span class="count"><a href="/github_personal_blog/tags">31</a></span>
+    <span class="name">标签</span>
+</div>
 
 
                                 </div>
                                 <div class="title">阿泽</div>
-                                <div class="career">Software Engineer</div>
+                                <div class="career">一个想上天的前端</div>
                                 <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
                                     
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/wzz778" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
@@ -466,7 +633,7 @@
                     <div class="col l4 hide-on-med-and-down" data-aos="zoom-in-left">
                         <div class="social-link">
                             
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/wzz778" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
@@ -501,7 +668,7 @@
                     </div>
                 </div>
 
-                <div class="introduction center-align" data-aos="fade-up">If you wish to succeed, you should use persistence as your good friend, experience as your reference, prudence as your brother and hope as your sentry.</div>
+                <div class="introduction center-align" data-aos="fade-up">权衡利弊，清醒前行！</div>
 
                 <style type="text/css">
     #posts-chart,
@@ -562,7 +729,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,1],
+                data: [1,2,2,1,4,5,2,3,4,2,4,3,4],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -604,7 +771,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [],
+                data: [{"name":"前端笔记","value":4},{"name":"周记","value":25},{"name":"Vue","value":4},{"name":"程序人生","value":3},{"name":"算法","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -628,7 +795,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: []
+                data: ["程序人生","周记 vue.js javascript 前端","前端 javascript","程序人生 前端","周记 前端 html","程序人生 javascript","Vue","笔记","周记 vue.js 前端 javascript","前端笔记 原型模式 javascript 前端"]
             }
         ],
         yAxis: [
@@ -641,7 +808,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [],
+                data: [3,2,2,2,1,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -682,40 +849,53 @@
         
         <div class="col s12 m6 l4" data-aos="fade-up">
             <div class="info center-align">
-                <a href="http://github.com/blinkfox/hexo-theme-matery" class="icon"
+                <a href="https://gitee.com/night-star1/picture-web" class="icon"
                    style="background: linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)" target="_blank">
                     <i class="fas fa-file-alt"></i>
                 </a>
                 <div class="info-title">
-                    <a href="http://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>
+                    <a href="https://gitee.com/night-star1/picture-web" target="_blank">汇滴图片网</a>
                 </div>
-                <div class="info-desc">This is a Hexo blog theme with &#39;Material Design&#39; and responsive design.</div>
+                <div class="info-desc">团队完成，前端基于JavaScript和node实现。海量图片，壁纸，日常动态分享。</div>
             </div>
         </div>
         
         <div class="col s12 m6 l4" data-aos="fade-up">
             <div class="info center-align">
-                <a href="https://github.com/blinkfox/fenix" class="icon"
+                <a href="https://gitee.com/FutureStudio/credit-recognition-system" class="icon"
                    style="background: linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)" target="_blank">
                     <i class="fas fa-database"></i>
                 </a>
                 <div class="info-title">
-                    <a href="https://github.com/blinkfox/fenix" target="_blank">Fenix</a>
+                    <a href="https://gitee.com/FutureStudio/credit-recognition-system" target="_blank">学分管理系统</a>
                 </div>
-                <div class="info-desc">这是 Spring Data JPA 复杂或动态 SQL 查询的扩展库。</div>
+                <div class="info-desc">团队完成，前端基于JavaScript和node实现。学分申请，认证，汇总申请表，申请情况。</div>
             </div>
         </div>
         
         <div class="col s12 m6 l4" data-aos="fade-up">
             <div class="info center-align">
-                <a href="https://github.com/blinkfox/typora-vue-theme" class="icon"
+                <a href="https://gitee.com/FutureStudio/headline-item" class="icon"
                    style="background: linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)" target="_blank">
                     <i class="fas fa-file-alt"></i>
                 </a>
                 <div class="info-title">
-                    <a href="https://github.com/blinkfox/typora-vue-theme" target="_blank">typora-vue-theme</a>
+                    <a href="https://gitee.com/FutureStudio/headline-item" target="_blank">未来头条</a>
                 </div>
-                <div class="info-desc">This is a typora theme inspired by Vue document style.</div>
+                <div class="info-desc">团队完成，前端基于纯JavaScript实现。图片，有完整的文章分享功能。</div>
+            </div>
+        </div>
+        
+        <div class="col s12 m6 l4" data-aos="fade-up">
+            <div class="info center-align">
+                <a href="https://gitee.com/zezhengyyds/daily-management" class="icon"
+                   style="background: linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                </a>
+                <div class="info-title">
+                    <a href="https://gitee.com/zezhengyyds/daily-management" target="_blank">学习成员日常管理</a>
+                </div>
+                <div class="info-desc">个人node实现，前后端通吃的网站，有较完善的登录注册，信息录入，签到，学习记录等功能。</div>
             </div>
         </div>
         
@@ -738,21 +918,10 @@
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #FF0066 0%, #FF00CC 100%); width: 85%">
-                    <span>Java</span>
-                </div>
-                <div class="skill-bar-percent">85%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #9900FF 0%, #CC66FF 100%); width: 80%">
+                     style="background: linear-gradient(to right, #9900FF 0%, #CC66FF 100%); width: 75%">
                     <span>JavaScript</span>
                 </div>
-                <div class="skill-bar-percent">80%</div>
+                <div class="skill-bar-percent">75%</div>
             </div>
         </div>
         
@@ -760,19 +929,8 @@
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #2196F3 0%, #42A5F5 100%); width: 80%">
+                     style="background: linear-gradient(to right, #2196F3 0%, #42A5F5 100%); width: 70%">
                     <span>HTML5</span>
-                </div>
-                <div class="skill-bar-percent">80%</div>
-            </div>
-        </div>
-        
-        
-        <div class="col s12 m6 l6" data-aos="fade-up">
-            <div class="skillbar">
-                <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #00BCD4 0%, #80DEEA 100%); width: 70%">
-                    <span>CSS</span>
                 </div>
                 <div class="skill-bar-percent">70%</div>
             </div>
@@ -782,10 +940,10 @@
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #4CAF50 0%, #81C784 100%); width: 90%">
-                    <span>SQL</span>
+                     style="background: linear-gradient(to right, #00BCD4 0%, #80DEEA 100%); width: 65%">
+                    <span>CSS</span>
                 </div>
-                <div class="skill-bar-percent">90%</div>
+                <div class="skill-bar-percent">65%</div>
             </div>
         </div>
         
@@ -793,10 +951,32 @@
         <div class="col s12 m6 l6" data-aos="fade-up">
             <div class="skillbar">
                 <div class="skillbar-title"
-                     style="background: linear-gradient(to right, #FFEB3B 0%, #FFF176 100%); width: 75%">
-                    <span>程序设计</span>
+                     style="background: linear-gradient(to right, #4CAF50 0%, #81C784 100%); width: 60%">
+                    <span>Vue</span>
                 </div>
-                <div class="skill-bar-percent">75%</div>
+                <div class="skill-bar-percent">60%</div>
+            </div>
+        </div>
+        
+        
+        <div class="col s12 m6 l6" data-aos="fade-up">
+            <div class="skillbar">
+                <div class="skillbar-title"
+                     style="background: linear-gradient(to right, #FFEB3B 0%, #FFF176 100%); width: 60%">
+                    <span>React</span>
+                </div>
+                <div class="skill-bar-percent">60%</div>
+            </div>
+        </div>
+        
+        
+        <div class="col s12 m6 l6" data-aos="fade-up">
+            <div class="skillbar">
+                <div class="skillbar-title"
+                     style="background: linear-gradient(to right, #FF0066 0%, #FF00CC 100%); width: 40%">
+                    <span>Java</span>
+                </div>
+                <div class="skill-bar-percent">40%</div>
             </div>
         </div>
         
@@ -809,6 +989,188 @@
     <div class="other-skills chip-container" data-aos="zoom-in-up">
         <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;其他技能</div>
         <div class="tag-chips center-align">
+            
+            
+            <a href="/github_personal_blog/tags/%E5%91%A8%E8%AE%B0-%E5%89%8D%E7%AB%AF-html/">
+                <span class="chip center-align waves-effect waves-light chip-default">周记 前端 html</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F-javascript/">
+                <span class="chip center-align waves-effect waves-light chip-default">程序人生 javascript</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%91%A8%E8%AE%B0-vue-js-javascript-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">周记 vue.js javascript 前端</span>
+            </a>
+            
+            
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E7%AC%94%E8%AE%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">笔记</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%91%A8%E8%AE%B0-vue-js-%E5%89%8D%E7%AB%AF-javascript/">
+                <span class="chip center-align waves-effect waves-light chip-default">周记 vue.js 前端 javascript</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF-javascript/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端 javascript</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-javascript-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 原型模式 javascript 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/java-%E8%93%9D%E6%A1%A5%E6%9D%AF-%E7%AE%97%E6%B3%95/">
+                <span class="chip center-align waves-effect waves-light chip-default">java 蓝桥杯 算法</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/websocket-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-%E7%BD%91%E7%BB%9C/">
+                <span class="chip center-align waves-effect waves-light chip-default">websocket 网络协议 网络</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/">
+                <span class="chip center-align waves-effect waves-light chip-default">javascript 前端 开发语言</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-node-js-javascript-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 node.js javascript 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-node-js-mongodb-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 node.js mongodb 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-linq-sql-node-js-database-mysql/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 linq sql node.js database mysql</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF-html-asp-net/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端 html asp.net</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/javascript-%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">javascript 程序人生 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">
+                <span class="chip center-align waves-effect waves-light chip-default">程序人生</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF-html/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端 html</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-javascript-%E5%89%8D%E7%AB%AF-node-js/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 javascript 前端 node.js</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">程序人生 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/html-%E5%89%8D%E7%AB%AF-javascript-%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">
+                <span class="chip center-align waves-effect waves-light chip-default">html 前端 javascript 程序人生</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/git-js-%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">
+                <span class="chip center-align waves-effect waves-light chip-default">git js 程序人生</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-javascript-%E5%89%8D%E7%AB%AF-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 javascript 前端 开发语言</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/javascript-node-js/">
+                <span class="chip center-align waves-effect waves-light chip-default">javascript node.js</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F-%E5%89%8D%E7%AB%AF-js/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 程序人生 前端 js</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%91%A8%E8%AE%B0-%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-javascript-%E5%89%8D%E7%AB%AF-websocket/">
+                <span class="chip center-align waves-effect waves-light chip-default">周记 项目实战 javascript 前端 websocket</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/leetcode-c/">
+                <span class="chip center-align waves-effect waves-light chip-default">leetcode c++</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80-ecmascript-%E5%89%8D%E7%AB%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">javascript 开发语言 ecmascript 前端</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%91%A8%E8%AE%B0-%E5%A4%A7%E6%95%B0%E6%8D%AE-javascript/">
+                <span class="chip center-align waves-effect waves-light chip-default">周记 大数据 javascript</span>
+            </a>
+            
+            
+            
+            <a href="/github_personal_blog/tags/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0-%E5%89%8D%E7%AB%AF-javascript-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/">
+                <span class="chip center-align waves-effect waves-light chip-default">前端笔记 前端 javascript 开发语言</span>
+            </a>
+            
             
         </div>
     </div>
@@ -876,8 +1238,6 @@
 <style>
     .aplayer .aplayer-lrc p {
         
-        display: none;
-        
         font-size: 12px;
         font-weight: 700;
         line-height: 16px !important;
@@ -885,19 +1245,8 @@
 
     .aplayer .aplayer-lrc p.aplayer-lrc-current {
         
-        display: none;
-        
         font-size: 15px;
         color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
     }
 
     
@@ -908,15 +1257,15 @@
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="netease"
                    type="playlist"
-                   id="503838841"
+                   id="7767085361"
                    fixed='true'
                    autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
                    preload='auto'
-                   volume='0.7'
-                   list-folded='true'
+                   volume='0.9'
+                   list-folded='false'
         >
         </meting-js>
     </div>
@@ -963,7 +1312,7 @@
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/wzz778" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
@@ -1142,6 +1491,7 @@ $(function () {
     <script src="/github_personal_blog/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/github_personal_blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/github_personal_blog/js/matery.js"></script>
+    <script src="/github_personal_blog/libs/others/sakura.js"></script>
     <script type="text/javascript"> var OriginTitile = document.title, st; 
         document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) }) 
     </script>
@@ -1149,6 +1499,7 @@ $(function () {
 
     
 
+    
     
 
     <!-- 雪花特效 -->
@@ -1205,5 +1556,4 @@ $(function () {
     
 
 </body>
-
 </html>
